@@ -44,16 +44,25 @@ class Ui_Form(object):
         self.label.setGeometry(QtCore.QRect(50, 80, 54, 11))
         self.label.setObjectName("label")
         self.stackWidget.addWidget(self.widget_2)
-        self.groupBox = QtWidgets.QGroupBox(Form)
-        self.groupBox.setGeometry(QtCore.QRect(50, 70, 171, 221))
-        self.groupBox.setObjectName("groupBox")
-        self.listView = QtWidgets.QListView(self.groupBox)
-        self.listView.setGeometry(QtCore.QRect(10, 10, 150, 200))
+        self.layoutWidget = QtWidgets.QWidget(Form)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 2, 2))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.listView = QtWidgets.QListView(Form)
+        self.listView.setGeometry(QtCore.QRect(50, 70, 101, 200))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listView.sizePolicy().hasHeightForWidth())
         self.listView.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.listView.setFont(font)
+        self.listView.setStyleSheet("QListView {\n"
+"    border: none;\n"
+"}")
         self.listView.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.listView.setObjectName("listView")
 
@@ -66,15 +75,4 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.pushButton.setText(_translate("Form", "버튼1"))
         self.label.setText(_translate("Form", "TextLabel"))
-        self.groupBox.setTitle(_translate("Form", "List"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 

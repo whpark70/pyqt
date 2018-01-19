@@ -26,7 +26,7 @@
     <string>Push to Plot</string>
    </property>
   </widget>
-  <widget class="simplePlotWidget" name="widget" native="true">
+  <widget class="PlotWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -39,7 +39,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>simplePlotWidget</class>
+   <class>PlotWidget</class>
    <extends>QWidget</extends>
    <header>matplotlibWidgetFile</header>
    <container>1</container>

@@ -12,7 +12,7 @@ class MyListView(Ui_Form):
 
 	def init_widget(self):
 	
-		list_title = [ 'button list', 'label list']
+		list_title = [ '서버', '네트워크']
 		
 		model = QStandardItemModel()
 		for item in list_title:

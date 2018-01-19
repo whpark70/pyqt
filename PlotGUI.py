@@ -15,7 +15,7 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(210, 60, 141, 31))
         self.pushButton.setObjectName("pushButton")
-        self.widget = simplePlotWidget(Dialog)
+        self.widget = PlotWidget(Dialog)
         self.widget.setGeometry(QtCore.QRect(90, 130, 421, 271))
         self.widget.setObjectName("widget")
 
@@ -27,14 +27,4 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.pushButton.setText(_translate("Dialog", "Push to Plot"))
 
-from matplotlibWidgetFile import simplePlotWidget
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
-
+from matplotlibWidgetFile import PlotWidget

@@ -4,10 +4,11 @@ from matplotlib.figure import Figure
 
 class MplCanvas(FigureCanvas):
 	def __init__(self):
-		self.fig = Figure()
+		self.fig = Figure(figsize=(5,3))
 		self.ax = self.fig.add_subplot(111)
 
 		super().__init__(self.fig)
+		#self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 		self.updateGeometry()
 

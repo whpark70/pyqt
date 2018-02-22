@@ -25,8 +25,8 @@ class MainFrame(QWidget):
 		for child in sorted(children):
 			child_item = QStandardItem(child)
 			parent.appendRow(child_item)
-			if type(children) ==dict:
-				self.displayTree(children(child), child_item)
+			if isinstance(children, dict):
+				self.displayTree(children[child], child_item)
 
 
 if __name__ == '__main__':

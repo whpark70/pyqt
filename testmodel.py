@@ -35,10 +35,10 @@ class TestModel(QAbstractItemModel):
 		return None
 
 
-if __name__ == '__main__':
-	app = QApplication(sys.argv)
-	view = QListView()
-	model = TestModel()
-	view.setModel(model)
-	view.show()
-	sys.exit(app.exec_())
+app = QApplication(sys.argv)
+view = QListView()
+model = TestModel()
+view.setModel(model)
+view.show()
+sys.exit(app.exec_())
+

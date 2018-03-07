@@ -25,7 +25,7 @@ class SampleModel(QStandardItemModel):
 				if type(subnode) == list:
 					for row, snode in enumerate(subnode):
 						snode_item = QStandardItem()
-						snode_item.setData(subnode, Qt.UserRole+1)
+						snode_item.setData(snode, Qt.UserRole+1)
 						node_item.appendRow(snode_item)
 		
 
@@ -35,25 +35,27 @@ class SampleDelgate(QStyledItemDelegate):
 		super().__init__()
 		
 	def paint(self, painter, option, index):
-		print(index.data(Qt.UserRole + 1).hasChildren())
-		self.initStyleOption(option, index)
-		print(option.text)
-		return QStyledItemDelegate.paint(self, painter, option, index)
+		model = index.model()
+		item = model.item(index.row(), index.column())
+		data = item.data(Qt.UserRole+1)
+		painter.drawText(option.rect, 0, data)
+		if item.hasChildren():
+			for row in range( item.rowCount()):
+				subitem = item.child(row,0)
+				subidx = subitem.index()
+				print(subitem.data())
 
 
-def main():
 
-	app = QApplication(sys.argv)
+app = QApplication(sys.argv)
 
-	model = SampleModel()
-	delegate = SampleDelgate()
-	view = QListView()
-	view.setModel(model)
-	view.setItemDelegate(delegate)
+model = SampleModel()
+delegate = SampleDelgate()
+view = QListView()
+view.setModel(model)
+view.setItemDelegate(delegate)
 
-	view.show()
+view.show()
 
-	sys.exit(app.exec_())
+sys.exit(app.exec_())
 
-if __name__ == '__main__':
-	main()

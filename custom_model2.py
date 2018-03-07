@@ -45,11 +45,12 @@ class CustomModel(QAbstractItemModel):
 			return in_index.internalPointer().columnCount()
 		return self._root.columnCount()
 
-	def data(self, in_index, role):
+	def data(self, in_index, role=None):
 		if not in_index.isValid():
 			return None
 		node = in_index.internalPointer()
-		if role == Qt.DisplayRole:
+		if role == CustomModel.NodeRole:
+			#print(node.data(in_index.column()))
 			return node.data(in_index.column())
 		return None
 
@@ -59,7 +60,7 @@ class CustomModel(QAbstractItemModel):
 		return self._root.childCount()
 
 	def roleNames(self):
-		return { SampleModel.NodeRole: b'node' }
+		return { CustomModel.NodeRole: b'node' }
 
 
 class CustomNode():
@@ -110,9 +111,6 @@ class CustomDelgate(QStyledItemDelegate):
 		data = index.data()
 		model = index.model()
 		painter.save()
-		if model.hasChildren(index):
-			
-		print(data)
 		
 		painter.drawText(option.rect, 0, data)
 		painter.restore()
@@ -128,10 +126,11 @@ if __name__ == '__main__':
 		items[-1].addChild( CustomNode(['g', 'h', 'i']))
 	
 	model = CustomModel(items)
-	delegate = CustomDelgate()
+	#delegate = CustomDelgate()
 	
+	'''
 	view = QListView()
-	#view = QTreeView()
+	view = QTreeView()
 	view.setModel(model)
 	view.setItemDelegate(delegate)
 	view.show()
@@ -142,5 +141,5 @@ if __name__ == '__main__':
 	ctx.setContextProperty("myModel", model)
 	engine.load("custom_model2.qml")
 	engine.quit.connect(app.quit)
-	'''
+	
 	sys.exit(app.exec_())

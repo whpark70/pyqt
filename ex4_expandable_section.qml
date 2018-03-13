@@ -58,6 +58,7 @@ Item {
 				anchors.fill: parent
 				onClicked: {
 					sectionHeaderRect.isExpanded = ! sectionHeaderRect.isExpanded
+
 				}	
 			}
 		}
@@ -108,7 +109,9 @@ Item {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: {
+					console.log(listing.currentItem.text())
 					listing.currentIndex = index
+
 				}
 			}
 		}

@@ -26,19 +26,15 @@ class MyWindow(Ui_Form):
 		self.serverListView.setVisible(False)
 		self.networkListView.setVisible(False)
 		
-		self.serverListView.clicked.connect(self.selectCanvas)
-		self.networkListView.clicked.connect(self.selectCanvas)
+		# listview category info added
+		self.serverListView.clicked.connect(lambda index: self.selectCanvas(index, 'server'))
+		self.networkListView.clicked.connect(lambda index: self.selectCanvas(index, 'network'))
 	
 		self.dashboardButton.clicked.connect(self.itemToggle)
 		self.serverButton.clicked.connect(self.itemToggle)
 		self.networkButton.clicked.connect(self.itemToggle)
 
 		self.stackedWidget.setCurrentIndex(0)		# first page in star
-
-
-	def mouseEvent(self, event):
-		print(self.toolBox.currentIndex())
-
 	
 
 	def itemToggle(self):
@@ -66,17 +62,14 @@ class MyWindow(Ui_Form):
 			self.stackedWidget.setCurrentIndex(0)
 		
 	# index: index of listview
-	def selectCanvas(self, index):
+	def selectCanvas(self, index, category):
 		serverName = index.data()
+		print(category)
 		stackedWidget = self.stackedWidget.findChild(QObject, serverName, Qt.FindDirectChildrenOnly)
 		if stackedWidget:
 			self.stackedWidget.setCurrentWidget(stackedWidget)
 		else:
 			self.stackedWidget.setCurrentIndex(0)
-		'''
-		viewIndex = self.stackedWidgetDict.get(serverName,0)
-		self.stackedWidget.setCurrentIndex(viewIndex)
-		'''
 
 
 if __name__ == "__main__":

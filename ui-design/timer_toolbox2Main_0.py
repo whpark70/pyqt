@@ -10,7 +10,6 @@ from pyVmomi import vim
 import pymonbase as pmb
 import timerplot_0 as tim
 
-
 class MyWindow(QObject):   # QWidget-> QObejct로 변경. UI thread와 logic thread 분리? 2018.04.04
 	"""docstring for MyMainWindow"""
 	send_fig = pyqtSignal(Axes, vim.VirtualMachine, int, str, name='send_fig' )

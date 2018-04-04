@@ -59,7 +59,6 @@ class SimpleMplCanvas(FigureCanvas):
 		self.axes = axes
 		self.axes.clear()
 
-
 # Axes를 받아 plot후 singnal을 이용하여 emit(Axes)
 # 이 plotter는 thread상에서 실행됨.
 class SimplePlotter(QObject): 			

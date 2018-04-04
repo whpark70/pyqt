@@ -27,7 +27,6 @@ class Worker(QObject):
 		while self.isRunning():
 			self.sum += 1
 			print(self.sum)
-			print(QThread.currentThreadId())
 			self.sig_numbers.emit(self.sum)
 			time.sleep(1)
 		self.finished.emit()
@@ -80,7 +79,8 @@ class Example(QObject):
 	def _connectSignal(self):
 		self.gui.startBtn.clicked.connect(self.worker.process)
 		self.worker.sig_numbers.connect(self.gui.updateStatus)
-		#self.gui.cancelBtn.clicked.connect(self.forceWorkerReset)
+		self.gui.cancelBtn.clicked.connect(self.forceWorkerReset)
+		''''
 		#self.gui.cancelBtn.clicked.connect(self.worker.stop)			# fail
 		self.gui.cancelBtn.clicked.connect(self.workerStop)				# 직접적인 stop.
 		
@@ -88,7 +88,7 @@ class Example(QObject):
 		self.worker.finished.connect(self.worker.deleteLater)
 		self.worker.finished.connect(self.thread.deleteLater)
 		self.worker.finished.connect(self.finished)
-
+		'''
 
 	def forceWorkerReset(self):
 		if self.thread.isRunning():

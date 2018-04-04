@@ -49,10 +49,11 @@ class MyWindow(QWidget):
 		self.setLayout(self.layout)
 
 		self.worker = Worker()
-		self.worker_thread = MyThread()
+		self.worker_thread = MyThread(self)
 		self.worker.moveToThread(self.worker_thread)
 		
-		self.goButton.clicked.connect(self.worker.start, Qt.QueuedConnection)
+		self.goButton.clicked.connect(self.worker.start)
+		#self.goButton.clicked.connect(self.worker.start, Qt.QueuedConnection)
 		#self.timer.timeout.connect(self.worker.porcess)
 		self.stopButton.clicked.connect(self.worker.stop)
 

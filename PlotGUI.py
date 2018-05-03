@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'PlotGUI.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.1
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,6 +17,11 @@ class Ui_Dialog(object):
         self.pushButton.setObjectName("pushButton")
         self.widget = PlotWidget(Dialog)
         self.widget.setGeometry(QtCore.QRect(90, 130, 421, 271))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy)
         self.widget.setObjectName("widget")
 
         self.retranslateUi(Dialog)
@@ -28,3 +33,13 @@ class Ui_Dialog(object):
         self.pushButton.setText(_translate("Dialog", "Push to Plot"))
 
 from matplotlibWidgetFile import PlotWidget
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
+
